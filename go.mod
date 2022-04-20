@@ -13,7 +13,7 @@ require (
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/fatih/color v1.13.0
-	github.com/go-chi/chi/v5 v5.0.8-0.20220103191336-b750c805b4ee // indirect
+	github.com/go-chi/chi/v5 v5.0.8-0.20220103191336-b750c805b4ee
 	github.com/go-chi/cors v1.2.0
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gofrs/uuid v4.2.0+incompatible
@@ -28,7 +28,7 @@ require (
 	github.com/luna-duclos/instrumentedsql v1.1.3
 	github.com/luna-duclos/instrumentedsql/opentracing v0.0.0-20200611091901-487c5ec83473
 	github.com/markphelps/flipt-grpc-go v0.6.0
-	github.com/mattn/go-sqlite3 v1.14.10
+	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
 	github.com/opentracing-contrib/go-grpc v0.0.0-20200813121455-4a6760c71486
