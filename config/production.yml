@@ -1,16 +1,29 @@
 log:
-  level: WARN
+  level: DEBUG
+
+ui:
+  enabled: true
+
+cache:
+  memory:
+    enabled: false
+    expiration: -1 # Items Do Not Expire
+    eviction_interval: 10m # Evict Expired Items Every 10m
+  redis:
+    enabled: true
+    expiration: 60s # Items Do Not Expire
+    address: localhost:6379
+    password: denis895
+    DB: 0
 
 server:
-  protocol: https
+  protocol: http
   host: 0.0.0.0
   http_port: 8080
   https_port: 443
   grpc_port: 9000
-  cert_file: cert.pem
-  cert_key: key.pem
 
 db:
-  url: postgres://postgres@localhost:5432/flipt?sslmode=disable
+  url: postgres://flipt_user:flipt_db@localhost:5432/flipt?sslmode=disable
   migrations:
-    path: ./config/migrations
+    path: /home/mind/work/personal/flipt/config/migrations

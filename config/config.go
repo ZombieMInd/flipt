@@ -45,8 +45,17 @@ type MemoryCacheConfig struct {
 	EvictionInterval time.Duration `json:"evictionInterval,omitempty"`
 }
 
+type RedisCacheConfig struct {
+	Address    string        `json:"address"`
+	Password   string        `json:"password"`
+	DB         int           `json:"db"`
+	Enabled    bool          `json:"enabled"`
+	Expiration time.Duration `json:"expiration,omitempty"`
+}
+
 type CacheConfig struct {
 	Memory MemoryCacheConfig `json:"memory,omitempty"`
+	Redis  RedisCacheConfig  `json:"redis,omitempty"`
 }
 
 type ServerConfig struct {
@@ -165,6 +174,13 @@ func Default() *Config {
 				Expiration:       -1,
 				EvictionInterval: 10 * time.Minute,
 			},
+			Redis: RedisCacheConfig{
+				Enabled:    false,
+				Expiration: 0,
+				Address:    "localhost:6379",
+				Password:   "",
+				DB:         0,
+			},
 		},
 
 		Server: ServerConfig{
@@ -213,6 +229,12 @@ const (
 	cacheMemoryEnabled          = "cache.memory.enabled"
 	cacheMemoryExpiration       = "cache.memory.expiration"
 	cacheMemoryEvictionInterval = "cache.memory.eviction_interval"
+
+	cacheRedisEnabled    = "cache.redis.enabled"
+	cacheRedisAddress    = "cache.redis.address"
+	cacheRedisPassword   = "cache.redis.password"
+	cacheRedisDB         = "cache.redis.db"
+	cacheRedisExpiration = "cache.redis.expiration"
 
 	// Server
 	serverHost      = "server.host"
@@ -292,6 +314,23 @@ func Load(path string) (*Config, error) {
 		}
 		if viper.IsSet(cacheMemoryEvictionInterval) {
 			cfg.Cache.Memory.EvictionInterval = viper.GetDuration(cacheMemoryEvictionInterval)
+		}
+	}
+
+	if viper.IsSet(cacheRedisEnabled) {
+		cfg.Cache.Redis.Enabled = viper.GetBool(cacheRedisEnabled)
+
+		if viper.IsSet(cacheRedisExpiration) {
+			cfg.Cache.Redis.Expiration = viper.GetDuration(cacheRedisExpiration)
+		}
+		if viper.IsSet(cacheRedisAddress) {
+			cfg.Cache.Redis.Address = viper.GetString(cacheRedisAddress)
+		}
+		if viper.IsSet(cacheRedisPassword) {
+			cfg.Cache.Redis.Password = viper.GetString(cacheRedisPassword)
+		}
+		if viper.IsSet(cacheRedisDB) {
+			cfg.Cache.Redis.DB = viper.GetInt(cacheRedisDB)
 		}
 	}
 
