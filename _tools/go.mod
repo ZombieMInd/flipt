@@ -7,8 +7,8 @@ require (
 	github.com/golangci/golangci-lint v1.43.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3
 	golang.org/x/tools v0.1.11
-	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.2.0
-	google.golang.org/protobuf v1.28.0
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.3.0
+	google.golang.org/protobuf v1.28.1
 )
 
 require (
